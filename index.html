@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="log"></div>
+  <input id="msg" placeholder="message">
+  <button onclick="send()">Send</button>
+
+  <script>
+    const ws = new WebSocket("ws://78.154.103.39:12697/ws/chat");
+
+    ws.onopen = () => log("Connected");
+    ws.onmessage = (e) => log("Received: " + e.data);
+    ws.onclose = () => log("Disconnected");
+
+    function send() {
+      const input = document.getElementById("msg");
+      ws.send(input.value);
+      input.value = "";
+    }
+
+    function log(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      document.getElementById("log").appendChild(div);
+    }
+  </script>
+</body>
+</html>
