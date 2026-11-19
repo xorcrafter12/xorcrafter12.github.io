@@ -6,7 +6,7 @@
   <button onclick="send()">Send</button>
 
   <script>
-    const ws = new WebSocket("ws://78.154.103.39:12697/ws/chat");
+    const ws = new WebSocket("wss://78.154.103.39:12697/ws/chat");
 
     ws.onopen = () => log("Connected");
     ws.onmessage = (e) => log("Received: " + e.data);
